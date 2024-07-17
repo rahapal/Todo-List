@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         filled: true,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 15, bottom: 30),
+                        padding: const EdgeInsets.only(top: 15, bottom: 5),
                         child: CustomTextField(
                           hintText: "Enter your password",
                           controller: _passwordController,
@@ -68,6 +68,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           fillColor: AppColors.white,
                           filled: true,
                         ),
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "Don't have an account?",
+                            style: kTextStyledefault,
+                          ),
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Regsiter",
+                                style: kTextstylemedium,
+                              ))
+                        ],
                       ),
                       CustomButton(
                         onPressed: () {},

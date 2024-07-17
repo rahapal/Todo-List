@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/presentation/constants/app_colors.dart';
-import 'package:todo_list/presentation/screens/register/login_screen.dart';
+import 'package:todo_list/presentation/screens/login/login_screen.dart';
+import 'package:todo_list/presentation/screens/register/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
