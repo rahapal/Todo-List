@@ -42,8 +42,14 @@ class CustomButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Center(
-            child: Text(title,
-                style: textStyle ?? Theme.of(context).textTheme.labelLarge),
+            child: Text(
+              title,
+              style: textStyle ??
+                  const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600),
+            ),
           ),
         ),
       ),

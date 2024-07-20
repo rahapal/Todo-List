@@ -22,12 +22,21 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSApplicationQueriesSchemes</key>
+	<key>CFBundleURLTypes</key>
 <array>
-  <string>todoist</string>
+    <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>app-1-116660617607-ios-7d8017335a454685cbd322</string>
+        </array>
+    </dict>
 </array>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>todoist</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -49,5 +58,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key></key>
+	<string></string>
 </dict>
 </plist>

@@ -170,10 +170,7 @@ class CustomTextField extends StatelessWidget {
                         color: Theme.of(context).colorScheme.error,
                         width: 1.5)),
             hintStyle: hintStyle ??
-                Theme.of(context)
-                    .textTheme
-                    .labelLarge
-                    ?.copyWith(color: AppColors.greyShadow),
+                TextStyle(fontSize: 16, color: AppColors.greyShadow),
           ),
         ),
       ],
