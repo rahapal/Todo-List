@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "116660617607",
+    "project_id": "to-do-db554",
+    "storage_bucket": "to-do-db554.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116660617607:android:d95dfdc00406ababcbd322",
+        "android_client_info": {
+          "package_name": "com.todolist.sushant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9wDhd2j75mYXlyXv4rqrXIQXv4RMBMm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
