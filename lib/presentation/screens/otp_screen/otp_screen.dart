@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
-import 'package:todo_list/bloc/auth_bloc/auth.dart';
-import 'package:todo_list/bloc/auth_bloc/auth_cubit.dart';
+import 'package:todo_list/bloc/bloc.dart';
 import 'package:todo_list/presentation/presentation.dart';
-import 'package:todo_list/presentation/screens/home/home_screen.dart';
 
 class OtpArgs {
   final String? verificationId;

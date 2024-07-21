@@ -2,7 +2,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/bloc/addtodo_bloc/addtodo_cubit.dart';
 import 'package:todo_list/bloc/auth_bloc/auth_cubit.dart';
+import 'package:todo_list/data/repo/todo/add_todo_repo.dart';
 import 'package:todo_list/firebase_options.dart';
 import 'package:todo_list/presentation/presentation.dart';
 
@@ -25,6 +27,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>(create: (context) => AuthCubit()),
+        BlocProvider<AddtodoCubit>(
+            create: (context) => AddtodoCubit(AddTodoRepo())),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

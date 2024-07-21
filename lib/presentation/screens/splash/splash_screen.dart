@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_list/presentation/presentation.dart';
-import 'package:todo_list/presentation/screens/home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -58,26 +57,24 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Expanded(
-        child: Align(
-          alignment: Alignment.center,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                AssetsSource.mainLogo,
-                height: 150,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "TODO APP",
-                style: TextStyle(fontSize: 30),
-              )
-            ],
-          ),
+      body: Align(
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              AssetsSource.mainLogo,
+              height: 150,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text(
+              "TODO APP",
+              style: TextStyle(fontSize: 30),
+            )
+          ],
         ),
       ),
     );

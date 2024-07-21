@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_list/bloc/auth_bloc/auth.dart';
 import 'package:todo_list/presentation/presentation.dart';
-import 'package:todo_list/presentation/screens/otp_screen/otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

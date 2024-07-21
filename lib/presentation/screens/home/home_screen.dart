@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:todo_list/presentation/constants/constants.dart';
+import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/ri.dart';
 import 'package:todo_list/presentation/presentation.dart';
+import 'package:todo_list/presentation/screens/home/todo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       context.go(LoginScreen.routeName);
                     });
                   },
-                  icon: const Icon(
-                    Icons.logout,
+                  icon: const Iconify(
+                    Ri.logout_circle_r_line,
                     size: 35,
                   )),
             )
@@ -51,9 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(15.0),
               child: Container(
                 height: 38,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: AppColors.textFieldBorderColor,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  color: AppColors.textFieldBorderColor.withOpacity(0.5),
                 ),
                 child: const TabBar(
                   dividerColor: Colors.transparent,
@@ -67,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                   tabs: [
                     Tab(
-                      text: 'AVAILABLE',
+                      text: 'TO DO',
                     ),
                     Tab(
-                      text: 'MY PICKUPS',
+                      text: 'COMPLETED',
                     ),
                   ],
                 ),
@@ -79,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: const TabBarView(
-          children: [],
+          children: [TodoWidget(), TodoWidget()],
         ),
       ),
     );

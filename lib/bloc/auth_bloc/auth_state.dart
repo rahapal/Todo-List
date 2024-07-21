@@ -19,8 +19,6 @@ class AuthLoggedInState extends AuthState {
   AuthLoggedInState(this.firebaseUser);
 }
 
-class AuthLoggedOutState extends AuthState {}
-
 class AuthErrorState extends AuthState {
   final String error;
   AuthErrorState(this.error);
