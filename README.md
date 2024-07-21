@@ -1,6 +1,6 @@
-# todo_list
+# todo_list with Bloc
 
-A new Flutter project.
+A Flutter project with Bloc.
 
 ## Getting Started
 
