@@ -1,18 +1,21 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/bloc/addtodo_bloc/addtodo_state.dart';
-import 'package:todo_list/data/models/todo_model.dart';
-import 'package:todo_list/data/repo/todo/add_todo_repo.dart';
+import 'package:todo_list/bloc/bloc.dart';
+import 'package:todo_list/data/data.dart';
+import 'package:todo_list/presentation/presentation.dart';
 
 class AddtodoCubit extends Cubit<AddtodoState> {
   final AddTodoRepo addTodoRepo;
+  final CompletedTodoRepo completedTodoRepo;
 
-  AddtodoCubit(this.addTodoRepo) : super(TodoLoadingState()) {
+  AddtodoCubit(this.addTodoRepo, this.completedTodoRepo)
+      : super(TodoinitialState()) {
     fetchDetails();
   }
 
   void fetchDetails() {
     try {
-      emit(TodoinitialState());
+      emit(TodoLoadingState());
       Stream<List<TodoModel>> list = addTodoRepo.showTodo();
       list.listen((todos) {
         emit(TodoSuccessState(todos));
@@ -22,10 +25,13 @@ class AddtodoCubit extends Cubit<AddtodoState> {
     }
   }
 
-  void deleteTodo(String id) {
+  void deleteTodo(String id, Map<String, dynamic> datas) {
     emit(TodoLoadingState());
     try {
-      addTodoRepo.deleteTodo(id);
+      addTodoRepo.deleteTodo(id).then((v) {
+        completedTodoRepo.addCompletedTodo(datas, id);
+      });
+
       emit(DeleteSuccessState());
     } catch (e) {
       emit(TodoErrorState("$e"));
@@ -40,11 +46,13 @@ class AddtodoCubit extends Cubit<AddtodoState> {
     }
   }
 
-  void updateTodo(Map<String, dynamic> datas, String id) {
+  void updateTodo(Map<String, dynamic> datas, String id) async {
     emit(TodoLoadingState());
     try {
-      addTodoRepo.updateTodo(datas, id);
-      emit(EditSuccessState());
+      await addTodoRepo.updateTodo(datas, id);
+
+      BotToast.showText(
+          text: "You Edited your Todo", contentColor: AppColors.green);
     } catch (e) {
       emit(TodoErrorState("$e"));
     }

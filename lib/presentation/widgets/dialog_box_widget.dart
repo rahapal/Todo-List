@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:random_string/random_string.dart';
-import 'package:todo_list/bloc/addtodo_bloc/addtodo_cubit.dart';
-import 'package:todo_list/presentation/extension/extension.dart';
+import 'package:todo_list/bloc/bloc.dart';
 import 'package:todo_list/presentation/presentation.dart';
-import 'package:todo_list/presentation/widgets/components/custom_date_picker.dart';
 
 class DialogBox extends StatefulWidget {
+  final AddtodoCubit addtodoCubit;
   final TextEditingController noteController;
   final bool where;
   final String? date;
@@ -15,6 +13,7 @@ class DialogBox extends StatefulWidget {
   final String? id;
   const DialogBox(
       {super.key,
+      required this.addtodoCubit,
       required this.noteController,
       required this.where,
       this.date,
@@ -94,7 +93,6 @@ class _DialogBoxState extends State<DialogBox> {
               onSaved: (p0) {
                 setState(() {
                   selectedDate = p0;
-                  print(selectedDate);
                 });
               },
               enabled: true,
@@ -112,14 +110,14 @@ class _DialogBoxState extends State<DialogBox> {
                   "note": widget.noteController.text,
                   "date": date,
                 };
-                context.read<AddtodoCubit>().updateTodo(details, widget.id!);
+                widget.addtodoCubit.updateTodo(details, widget.id!);
               } else {
                 Map<String, dynamic> details = {
                   "id": id,
                   "note": widget.noteController.text,
                   "date": date
                 };
-                context.read<AddtodoCubit>().addTodo(details, id);
+                widget.addtodoCubit.addTodo(details, id);
               }
               context.pop();
             },

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/ri.dart';
 import 'package:todo_list/presentation/presentation.dart';
-import 'package:todo_list/presentation/screens/home/todo_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -80,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: const TabBarView(
-          children: [TodoWidget(), TodoWidget()],
+          children: [TodoWidget(), CompletedWidget()],
         ),
       ),
     );

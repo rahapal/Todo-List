@@ -2,15 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_list/data/data.dart';
 
-class AddTodoRepo {
+class CompletedTodoRepo {
   final userId = FirebaseAuth.instance.currentUser?.uid;
-
-  Future<void> addTodo(Map<String, dynamic> datas, String id) async {
+  Future<void> addCompletedTodo(Map<String, dynamic> datas, String id) async {
     try {
       await FirebaseFirestore.instance
           .collection("users")
           .doc(userId)
-          .collection('todo')
+          .collection('completed')
           .doc(id)
           .set(datas);
     } catch (e) {
@@ -22,7 +21,7 @@ class AddTodoRepo {
     return FirebaseFirestore.instance
         .collection("users")
         .doc(userId)
-        .collection('todo')
+        .collection('completed')
         .snapshots()
         .map(
           (q) => q.docs.map((e) => TodoModel.fromJson(e.data())).toList(),
@@ -34,34 +33,11 @@ class AddTodoRepo {
       await FirebaseFirestore.instance
           .collection("users")
           .doc(userId)
-          .collection('todo')
+          .collection('completed')
           .doc(id)
           .delete();
     } catch (e) {
       throw Exception('Failed to add todo: $e');
-    }
-  }
-
-  Future<void> updateTodo(Map<String, dynamic> datas, String id) async {
-    try {
-      final docSnapshot = await FirebaseFirestore.instance
-          .collection("users")
-          .doc(userId)
-          .collection('todo')
-          .doc(id)
-          .get();
-      if (docSnapshot.exists) {
-        await FirebaseFirestore.instance
-            .collection("users")
-            .doc(userId)
-            .collection('todo')
-            .doc(id)
-            .update(datas);
-      } else {
-        throw Exception('id $id does not exist.');
-      }
-    } catch (e) {
-      throw Exception('Failed to update todo: $e');
     }
   }
 }

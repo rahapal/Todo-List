@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:todo_list/bloc/auth_bloc/auth.dart';
+import 'package:todo_list/bloc/bloc.dart';
 import 'package:todo_list/presentation/presentation.dart';
 
 class LoginScreen extends StatefulWidget {

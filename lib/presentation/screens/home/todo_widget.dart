@@ -1,11 +1,9 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/bloc/addtodo_bloc/addtodo_cubit.dart';
-import 'package:todo_list/bloc/addtodo_bloc/addtodo_state.dart';
-import 'package:todo_list/data/repo/todo/add_todo_repo.dart';
+import 'package:todo_list/bloc/bloc.dart';
+import 'package:todo_list/data/data.dart';
 import 'package:todo_list/presentation/presentation.dart';
-import 'package:todo_list/presentation/widgets/dialog_box_widget.dart';
 
 class TodoWidget extends StatefulWidget {
   const TodoWidget({super.key});
@@ -17,27 +15,18 @@ class TodoWidget extends StatefulWidget {
 class _TodoWidgetState extends State<TodoWidget> {
   final TextEditingController _noteController = TextEditingController();
   final TextEditingController _textEditingController = TextEditingController();
-
+  final addToDoCubit = AddtodoCubit(AddTodoRepo(), CompletedTodoRepo());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => AddtodoCubit(AddTodoRepo()),
+        create: (context) => addToDoCubit,
         child: BlocConsumer<AddtodoCubit, AddtodoState>(
           listener: (context, state) {
-            if (state is TodoLoadingState) {
-              BotToast.showLoading();
-            } else {
-              BotToast.closeAllLoading();
-            }
             if (state is DeleteSuccessState) {
               BotToast.showText(
                   text: "You have completed your Todo",
                   contentColor: AppColors.green);
-            }
-            if (state is EditSuccessState) {
-              BotToast.showText(
-                  text: "You Edited your Todo", contentColor: AppColors.green);
             }
           },
           builder: (context, state) {
@@ -94,9 +83,15 @@ class _TodoWidgetState extends State<TodoWidget> {
                               children: [
                                 InkWell(
                                   onTap: () {
+                                    Map<String, dynamic> datas = {
+                                      "id": model.id,
+                                      "date": model.date,
+                                      "note": model.note
+                                    };
+
                                     context
                                         .read<AddtodoCubit>()
-                                        .deleteTodo(model.id);
+                                        .deleteTodo(model.id, datas);
                                   },
                                   child: const Text(
                                     "Done",
@@ -106,7 +101,6 @@ class _TodoWidgetState extends State<TodoWidget> {
                                 const SizedBox(width: 8),
                                 InkWell(
                                   onTap: () {
-                                    print("Widget ID : ${model.id}");
                                     _textEditingController.text = model.note;
                                     showDialog(
                                       context: context,
@@ -118,6 +112,7 @@ class _TodoWidgetState extends State<TodoWidget> {
                                                 Radius.circular(15.0)),
                                           ),
                                           child: DialogBox(
+                                            addtodoCubit: addToDoCubit,
                                             noteController:
                                                 _textEditingController,
                                             where: true,
@@ -145,7 +140,10 @@ class _TodoWidgetState extends State<TodoWidget> {
             } else {
               return const SizedBox(
                 height: 400.0,
-                child: Center(child: CircularProgressIndicator()),
+                child: Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.red,
+                )),
               );
             }
           },
@@ -164,6 +162,7 @@ class _TodoWidgetState extends State<TodoWidget> {
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
                 ),
                 child: DialogBox(
+                  addtodoCubit: addToDoCubit,
                   noteController: _noteController,
                   where: false,
                 ),
