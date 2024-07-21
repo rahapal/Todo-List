@@ -25,7 +25,7 @@ class AddtodoCubit extends Cubit<AddtodoState> {
     }
   }
 
-  void deleteTodo(String id, Map<String, dynamic> datas) {
+  void doneTodo(String id, Map<String, dynamic> datas) {
     emit(TodoLoadingState());
     try {
       addTodoRepo.deleteTodo(id).then((v) {

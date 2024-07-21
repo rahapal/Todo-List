@@ -91,7 +91,7 @@ class _TodoWidgetState extends State<TodoWidget> {
 
                                     context
                                         .read<AddtodoCubit>()
-                                        .deleteTodo(model.id, datas);
+                                        .doneTodo(model.id, datas);
                                   },
                                   child: const Text(
                                     "Done",
