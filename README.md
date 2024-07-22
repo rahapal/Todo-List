@@ -1,4 +1,4 @@
-# todo_list with Bloc
+# todo_list with Bloc(Firebase Auth,Firebase Database)
 
 # App Preview
 
